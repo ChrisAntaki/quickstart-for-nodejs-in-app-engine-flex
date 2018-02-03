@@ -7,13 +7,13 @@ const app = express();
 const server = http.Server(app);
 const io = createSocketInterface(server);
 
-// Static files
-app.use(express.static(path.join(__dirname, 'public')));
-
-// Home page
+// Serve home page.
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
+
+// Serve static files.
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Keep a running count of client clicks.
 // When a new click comes in, send an updated count to all clients.
